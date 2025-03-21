@@ -8,8 +8,7 @@ import * as path from 'path';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import compression from 'compression';
-import { connectDB } from './database';
-
+import databaseInstance from './database/mongodb';
 const app = express();
 app.use(morgan('dev'));
 app.use(compression());
@@ -19,7 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 3333;
 
 const startServer = async () => {
-  const isConnected = await connectDB();
+  const isConnected = await databaseInstance.getConnection();
+  console.log(isConnected);
   if (isConnected) {
     const server = app.listen(port, () => {
       console.log(`Listening at http://localhost:${port}/api`);
