@@ -20,7 +20,6 @@ const port = process.env.PORT || 3333;
 
 const startServer = async () => {
   const isConnected = await connectDB();
-  console.log(isConnected ? '✅ MongoDB connected!' : '❌ MongoDB connection error');
   if (isConnected) {
     const server = app.listen(port, () => {
       console.log(`Listening at http://localhost:${port}/api`);

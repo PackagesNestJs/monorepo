@@ -6,6 +6,21 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb://myadmin:mysecret@localhost
 
 export const connectDB = async () => {
   try {
+    // Create a reference to the existing connection
+    const db = mongoose.connection;
+    // Register event listeners BEFORE calling connect
+    if (process.env.NODE_ENV !== "production") {
+      console.log("⚠️ Project running in development!");
+      db.once("open", async () => console.info("🔌 Connecting to MongoDB..."));
+      db.on("reconnected", async() => console.log("✅ MongoDB reconnected!"));
+      db.on("reconnectFailed", async() => console.log("❌ MongoDB reconnect failed!"));
+      db.on("close", async() => console.log("⚠️ MongoDB connection closed!"));
+      db.set("debug", true)
+      db.set("debug",{color: true});
+    }else {
+      console.log("✅ Project running in production!");
+    }
+    // Now establish the connection
     await mongoose.connect(MONGO_URI, {
       maxPoolSize: 10,        // Limit connections in pool to 50
       minPoolSize: 1,         // Keep at least 5 connections open
@@ -13,10 +28,6 @@ export const connectDB = async () => {
       socketTimeoutMS: 45000, // Timeout for I/O operations (default: 30s)
       serverSelectionTimeoutMS: 5000, // Timeout for selecting a server
     })
-    const db = mongoose.connection;
-    db.on("connected", () => console.log("✅ MongoDB connected!"));
-    db.on("error", (err) => console.error("❌ MongoDB connection error:", err));
-    db.on("disconnected", () => console.log("⚠️ MongoDB disconnected!"));
     return true;
   }catch (error) {
     console.error(error);
