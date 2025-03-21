@@ -2,7 +2,5 @@ packages:
   - packages/*
   - api
   - api-e2e
-ignoredBuiltDependencies:
-  - '@parcel/watcher'
-  - '@swc/core'
-  - core-js-pure
+onlyBuiltDependencies:
+  - nx

@@ -33,7 +33,10 @@ To build the library use:
  pnpm add -D @types/helmet -F api 
  pnpm add helmet -F api #protect server info (Ex: curl http://****** --include)
 ```
-
+* dotenv
+```shell
+  pnpm add dotenv -w
+```
 To run any task with Nx use:
 
 ```sh
