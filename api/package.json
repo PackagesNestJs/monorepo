@@ -1,0 +1,37 @@
+{
+  "name": "@be-monorepo/api",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "targets": {
+      "serve": {
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "@be-monorepo/api:build",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "@be-monorepo/api:build:development"
+          },
+          "production": {
+            "buildTarget": "@be-monorepo/api:build:production"
+          }
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@types/compression": "^1.7.5",
+    "compression": "^1.8.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/morgan": "^1.9.9"
+  }
+}

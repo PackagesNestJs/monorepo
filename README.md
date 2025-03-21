@@ -1,29 +1,43 @@
 # BeMonorepo
+<li>https://appflowy.com/app/80a8ab61-7c7d-4c54-a984-55114a3019bf/8554e97c-2b6a-48c8-82b2-f4954e9f13fa</li>
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+✨ Practice NodeJs ✨.
+ * Install project with nx using pnpm
+   * pnpm add -g nx
+   * npx create-nx-workspace@latest my-nx-app --package-manager=pnpm 
+   * cd my-nx-app 
+   * pnpm add -D @nx/express 
+   * pnpm nx g @nx/express:app my-api 
+   * pnpm nx serve my-api 
+   * pnpm nx build my-api
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
-
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-
-## Generate a library
+## Generate app name using pnpm
 
 ```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
+  npx create-nx-workspace@latest name --package-manager=pnpm
 ```
 
-## Run tasks
+## Run Packages
 
-To build the library use:
-
+To build the library use: 
+* Compression: 
 ```sh
-npx nx build pkg1
+  pnpm add compression -F api # compression data transferred
+```
+* Show logs
+```sh
+  pnpm add morgan -F api #Show logs
+ ```
+* protect info serve
+```sh
+ pnpm add -D @types/helmet -F api 
+ pnpm add helmet -F api #protect server info (Ex: curl http://****** --include)
 ```
 
 To run any task with Nx use:
 
 ```sh
-npx nx <target> <project-name>
+  npx nx <target> <project-name>
 ```
 
 These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
