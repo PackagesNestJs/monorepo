@@ -18,7 +18,7 @@ class Database {
     return Database.instance;
   }
 
-  async connect() {
+  connect() {
     try {
       if (!this.db) {
         const connection = mongoose.connection;
@@ -35,14 +35,13 @@ class Database {
           console.log('✅ Project running in production!');
         }
         // Now establish the connection
-        await mongoose.connect(MONGO_URI, {
+        mongoose.connect(MONGO_URI, {
           maxPoolSize: 10,        // Limit connections in pool to 50
           minPoolSize: 1,         // Keep at least 5 connections open
           maxIdleTimeMS: 30000,   // Close idle connections after 30 seconds
           socketTimeoutMS: 45000, // Timeout for I/O operations (default: 30s)
           serverSelectionTimeoutMS: 5000 // Timeout for selecting a server
         });
-        console.log(connection)
         this.db = connection;
       }
     }catch (e) {
@@ -55,6 +54,11 @@ class Database {
     return this.db;
   }
 
+  async getConnectionCount() {
+    const connections = mongoose.connections.length;
+    console.log(`🔌 Connected to MongoDB: ${connections} connections`);
+    return connections;
+  }
 }
 
 export default new Database();

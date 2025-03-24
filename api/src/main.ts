@@ -9,6 +9,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import compression from 'compression';
 import databaseInstance from './database/mongodb';
+import { startMonitoring } from './helpers/check.connections';
 const app = express();
 app.use(morgan('dev'));
 app.use(compression());
@@ -18,8 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 3333;
 
 const startServer = async () => {
-  const isConnected = await databaseInstance.getConnection();
-  console.log(isConnected);
+  const isConnected: unknown = await databaseInstance.getConnection();
   if (isConnected) {
     const server = app.listen(port, () => {
       console.log(`Listening at http://localhost:${port}/api`);
@@ -31,6 +31,8 @@ const startServer = async () => {
       });
     });
     server.on('error', console.error);
+    await databaseInstance.getConnectionCount();
+    await startMonitoring(isConnected);
   }
 }
 
@@ -44,3 +46,4 @@ app.get('/api', (req, res) => {
 });
 
 startServer();
+
