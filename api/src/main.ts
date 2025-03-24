@@ -10,13 +10,15 @@ import helmet from 'helmet';
 import compression from 'compression';
 import databaseInstance from './database/mongodb';
 import { startMonitoring } from './helpers/check.connections';
+import configDB from './configs/mongodb';
+
 const app = express();
 app.use(morgan('dev'));
 app.use(compression());
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const port = process.env.PORT || 3333;
+const port = configDB.app.port;
 
 const startServer = async () => {
   const isConnected: unknown = await databaseInstance.getConnection();
