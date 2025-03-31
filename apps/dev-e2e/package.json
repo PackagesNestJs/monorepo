@@ -1,0 +1,26 @@
+{
+  "name": "@dev/dev-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "dev-e2e",
+    "implicitDependencies": [
+      "dev"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/dev-e2e/jest.config.ts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "dev:build"
+        ]
+      }
+    }
+  }
+}
