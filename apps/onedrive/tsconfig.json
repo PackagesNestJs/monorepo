@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "../../libs/cloud"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "paths": {
+    "@core/cloud1": ["libs/cloud/src/index.ts"]
+  }
+}

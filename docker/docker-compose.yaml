@@ -1,0 +1,26 @@
+services:
+  mongodb:
+    build:
+      context: .
+      dockerfile: ./mongodb/Dockerfile
+      args:
+        MONGO_USER: myadmin
+        MONGO_PASSWORD: mysecret
+        MONGO_DB: myappdb
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    env_file:
+      - ./mongodb/.env
+    volumes:
+      - mongo_data:/data/db
+#      - ./mongodb/init-db.js:/docker-entrypoint-initdb.d/init-db.js
+    networks:
+      - shop-dev
+volumes:
+  mongo_data:
+    driver: local
+networks:
+  shop-dev:
+    driver: bridge

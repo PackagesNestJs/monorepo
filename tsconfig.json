@@ -4,10 +4,13 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/dev-e2e"
+      "path": "./apps/api"
     },
     {
-      "path": "./apps/dev"
+      "path": "./apps/onedrive"
+    },
+    {
+      "path": "./libs/cloud"
     }
   ]
 }

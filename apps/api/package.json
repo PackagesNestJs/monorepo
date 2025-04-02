@@ -1,0 +1,28 @@
+{
+  "name": "@dev/api",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "targets": {
+      "serve": {
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "@dev/api:build",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "@dev/api:build:development"
+          },
+          "production": {
+            "buildTarget": "@dev/api:build:production"
+          }
+        }
+      }
+    }
+  }
+}

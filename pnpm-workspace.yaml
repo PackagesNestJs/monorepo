@@ -1,0 +1,11 @@
+ignoredBuiltDependencies:
+  - '@parcel/watcher'
+  - '@swc/core'
+  - core-js-pure
+  - esbuild
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - core-js
+  - nx
+packages:
+  - libs/*
