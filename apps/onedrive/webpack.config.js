@@ -10,7 +10,8 @@ module.exports = {
     plugins: [new TsconfigPathsPlugin()],
     extensions: ['.ts', '.js', '.json'],
     alias: {
-      '@core/cloud': join(__dirname, '../../libs/cloud/src/index.ts')
+      '@core/cloud': join(__dirname, '../../libs/cloud/src/index.ts'),
+      '@core/deep-seek': join(__dirname, 'libs/deep-seek/dist/index.js'),
     }
   },
 

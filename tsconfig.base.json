@@ -18,7 +18,8 @@
     "strict": true,
     "customConditions": ["development"],
     "paths": {
-      "@core/cloud": ["libs/cloud/src/index.ts"]
+      "@core/cloud": ["libs/cloud/src/index.ts"],
+      "@core/deep-seek": ["libs/deep-seek/src/index.ts"]
     }
   }
 }

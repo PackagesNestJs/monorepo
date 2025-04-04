@@ -1,10 +1,13 @@
-import { Controller, Get, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { AppService } from './app.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
+import { DeepSeekFactory } from '@core/deep-seek';
 
 @Controller()
 export class AppController {
+  const deepSeekService= DeepSeekFactory.createDeepSeekService();
+
   constructor(private readonly appService: AppService) {}
 
   @Get()
@@ -37,5 +40,11 @@ export class AppController {
     // Step 3: Exchange the authorization code for an access token
     const accessToken = await this.appService.getAccessToken(code);
     return { message: 'Authenticated successfully', accessToken };
+  }
+
+  @Post('chat')
+  async chat(@Body() body: any) {
+    const response = await this.deepSeekService.chat({query: body.message});
+    return { response };
   }
 }

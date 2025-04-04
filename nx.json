@@ -22,8 +22,7 @@
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
-      },
-      "exclude": ["libs/mcr/*"]
+      }
     },
     {
       "plugin": "@nx/eslint/plugin",
@@ -43,7 +42,6 @@
     },
     {
       "plugin": "@nx/js/typescript",
-      "include": ["libs/mcr/*"],
       "options": {
         "typecheck": {
           "targetName": "typecheck"

@@ -7,10 +7,10 @@
       "path": "../../libs/cloud"
     },
     {
+      "path": "../../libs/deep-seek"
+    },
+    {
       "path": "./tsconfig.app.json"
     }
-  ],
-  "paths": {
-    "@core/cloud1": ["libs/cloud/src/index.ts"]
-  }
+  ]
 }

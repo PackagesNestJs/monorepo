@@ -13,15 +13,20 @@ import Joi from 'joi';
         NODE_ENV: Joi.string()
           .valid('development', 'production')
           .default('development'),
-        APP_NAME: Joi.string().valid('development', 'production').required(),
+        APP_NAME: Joi.string().required(),
         AZURE_CLIENT_ID: Joi.string().required(),
         AZURE_CLIENT_SECRET: Joi.string().required(),
-        AZURE_TENANT_ID: Joi.string().required(),
+        AZURE_TENANT_ID: Joi.string().when('AWS_TYPE', {
+          is: 'organization',
+          then: Joi.required(),
+          otherwise: Joi.optional(),
+        }),
         AZURE_SCOPE: Joi.string().default(
           'https://graph.microsoft.com/.default'
         ),
       }),
     }),
+
   ],
   providers: [CloudService],
   exports: [CloudService],

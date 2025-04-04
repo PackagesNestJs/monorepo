@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
-import { MulterFile } from './multer-file.interface';
+import { MulterFile } from './base/multer-file.interface';
 
 @Injectable()
 export class CloudService {

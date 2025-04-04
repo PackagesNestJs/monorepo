@@ -11,6 +11,9 @@
     },
     {
       "path": "./libs/cloud"
+    },
+    {
+      "path": "./libs/deep-seek"
     }
   ]
 }
