@@ -1,5 +1,6 @@
 import { ApiClient } from './api-client.js';
 import { DeepSeekChatRequest, DeepSeekChatResponse, DeepSeekRequest, DeepSeekResponse } from './types.js';
+import { AiService } from './ai.service.js';
 
 export class DeepSeekService {
   private apiClient= ApiClient.getInstance();
@@ -25,13 +26,7 @@ export class DeepSeekService {
   }
 
   async chat(body: DeepSeekRequest): Promise<DeepSeekChatResponse | null> {
-    return this.fetchChatData('/v1/chat/completions', {
-      "model": "deepseek-chat",
-      "messages": [
-        {"role": "user", "content": body.query}
-      ],
-      "stream": false
-    }
-    );
+    const chatRequest = AiService.initChatRequest(body.query);
+    return this.fetchChatData('/v1/chat/completions', chatRequest);
   }
 }

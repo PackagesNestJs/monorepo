@@ -5,13 +5,19 @@ export interface DeepSeekRequest {
     retries?: number;
   }
 }
-
+export enum AccountType {
+  SYSTEM = 'system',
+  USER = 'user',
+}
+type AccountTypes = 'system' | 'user';
+type msgContent = {
+  role: AccountTypes,
+  content: string,
+}
 export interface DeepSeekChatRequest {
-  "model": "deepseek-chat",
-  "messages": [
-    {"role": "user", "content": string}
-  ],
-  "stream": false
+  model: string,
+  messages:msgContent[],
+  temperature: number,
 }
 
 export interface DeepSeekChatResponse {
